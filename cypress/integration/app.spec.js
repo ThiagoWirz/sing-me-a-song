@@ -19,9 +19,9 @@ describe("Test app", () => {
     cy.contains(recommendation.name).should("be.visible");
 
     cy.contains("0").should("be.visible");
-    cy.get("#up").click();
+    cy.get(".GoArrowUp").click();
     cy.contains("1").should("be.visible");
-    cy.get("#down").click();
+    cy.get(".GoArrowDown").click();
     cy.contains("0").should("be.visible");
   });
 });
