@@ -7,10 +7,8 @@ describe("Test app", () => {
 
     cy.visit("http://localhost:3000/");
 
-    cy.get("input[placeholder=Name]").type(recommendation.name);
-    cy.get("input[placeholder='https://youtu.be/...]").type(
-      recommendation.link
-    );
+    cy.get("input").first().type(recommendation.name);
+    cy.get("input").last().type(recommendation.link);
 
     cy.intercept("POST", "/recommendations").as("postRecommendations");
     cy.get("button").click();
@@ -19,9 +17,9 @@ describe("Test app", () => {
     cy.contains(recommendation.name).should("be.visible");
 
     cy.contains("0").should("be.visible");
-    cy.get(".GoArrowUp").click();
+    cy.get("article").first().find("svg").first().click();
     cy.contains("1").should("be.visible");
-    cy.get(".GoArrowDown").click();
+    cy.get("article").first().find("svg").last().click();
     cy.contains("0").should("be.visible");
   });
 });
